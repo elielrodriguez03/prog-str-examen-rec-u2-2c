@@ -27,6 +27,7 @@ public class Recovery2CService {
         return false;
     }
 
+
     public static String clasificarPrioridad(int horas) {
         // TODO:
         // BAJA <= 3

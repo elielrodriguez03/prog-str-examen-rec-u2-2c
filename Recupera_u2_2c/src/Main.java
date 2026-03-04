@@ -28,6 +28,7 @@ public class Main {
                 return;
             }
 
+
             int categoria = sc.nextInt();
 
             if (!Recovery2CService.esCategoriaValida(categoria)) {
