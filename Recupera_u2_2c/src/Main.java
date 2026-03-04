@@ -15,7 +15,7 @@ public class Main {
 
             if (codigo.equalsIgnoreCase("FIN")) break;
 
-            if (!Recovery2CService.esCodigoValido(codigo)) {
+            if (Recovery2CService.esCodigoValido(codigo)) {
                 System.out.println("Código inválido");
                 continue;
             }
@@ -25,10 +25,11 @@ public class Main {
                 System.out.println("Categoría inválida");
                 return;
             }
-            int categoria = sc.nextInt();
 
-            if (!Recovery2CService.esCategoriaValida(categoria)) {
-                System.out.println("Categoría inválida");
+            int categoria = sc.nextInt();
+//!
+            if (Recovery2CService.esCategoriaValida(categoria)) {
+                System.out.println("Categoría válida");
                 continue;
             }
 

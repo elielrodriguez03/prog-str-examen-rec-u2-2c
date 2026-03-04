@@ -26,7 +26,7 @@ Evaluar estructuras de control (if/else, while), validación de entradas con Sca
    git push -u origin elieldavid-rodriguez-2c
 
 ## Estructura del proyecto
-- src/Main.java
+- src/Main.javaj
 - src/Recovery2CService.java
 
 
