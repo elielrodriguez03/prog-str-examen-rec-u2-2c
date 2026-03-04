@@ -23,7 +23,7 @@ public class Main {
             System.out.print("Categoría (1=Laptop, 2=Proyector, 3=Kit Arduino, 4=Cableado): ");
             if (!sc.hasNextInt()) {
                 System.out.println("Categoría inválida");
-                return;
+               return;
             }
             int categoria = sc.nextInt();
 
@@ -43,6 +43,7 @@ public class Main {
                 System.out.println("Horas inválidas");
                 continue;
             }
+
 
             totalValidas++;
             sumaHoras += horas;
