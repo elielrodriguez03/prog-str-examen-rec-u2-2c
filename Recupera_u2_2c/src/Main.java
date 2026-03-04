@@ -16,8 +16,10 @@ public class Main {
             if (codigo.equalsIgnoreCase("FIN")) break;
 
             if (!Recovery2CService.esCodigoValido(codigo)) {
-                System.out.println("Código inválido");
+                System.out.println("Código invalido");
                 continue;
+            }else {
+                System.out.println("Codigo valido");
             }
 
             System.out.print("Categoría (1=Laptop, 2=Proyector, 3=Kit Arduino, 4=Cableado): ");
@@ -55,7 +57,7 @@ public class Main {
             String pr = Recovery2CService.clasificarPrioridad(horas);
             if (pr.equals("BAJA")) totalBaja++;
             else if (pr.equals("MEDIA")) totalMedia++;
-            else totalAlta++;
+            else if (pr.equals("ALTA"))totalAlta++;
 
             if (Recovery2CService.requiereAutorizacion(categoria, horas)) {
                 System.out.println("REQUIERE AUTORIZACIÓN");
@@ -73,7 +75,7 @@ public class Main {
         System.out.println("Prioridad MEDIA: " + totalMedia);
         System.out.println("Prioridad ALTA: " + totalAlta);
 
-        double promedio = (totalValidas == 0) ? 0.0 : (sumaHoras * 1.0 / totalValidas);
+        double promedio = (totalValidas == 0) ? 0.00 : (sumaHoras * 1.0 / totalValidas);
         System.out.printf("Promedio horas: %.2f\n", promedio);
     }
 }
