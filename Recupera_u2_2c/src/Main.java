@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        String prioridad;
         int totalValidas = 0;
         int totalLaptop = 0, totalProyector = 0, totalArduino = 0, totalCableado = 0;
         int totalBaja = 0, totalMedia = 0, totalAlta = 0;
