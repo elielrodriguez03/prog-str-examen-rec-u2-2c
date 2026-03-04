@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        Recovery2CService Recovery2CService = new Recovery2CService();
 
         int totalValidas = 0;
         int totalLaptop = 0, totalProyector = 0, totalArduino = 0, totalCableado = 0;
@@ -34,7 +35,8 @@ public class Main {
 
             System.out.print("Horas (1..12): ");
             if (!sc.hasNextInt()) {
-                System.out.println("Horas inválidas");
+
+            } else {System.out.println("Horas inválidas");
                 return;
             }
             int horas = sc.nextInt();
