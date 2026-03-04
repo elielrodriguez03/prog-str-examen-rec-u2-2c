@@ -27,6 +27,7 @@ public class Main {
                 System.out.println("Categoría inválida, debe de ser numerico y del 1 al 4");
                 return;
             }
+
             int categoria = sc.nextInt();
 
             if (!Recovery2CService.esCategoriaValida(categoria)) {
