@@ -11,7 +11,7 @@ public class Main {
         int sumaHoras = 0;
 
         while (true) {
-            System.out.print("Código (7 chars) o FIN: ");
+            System.out.print("Código (7 chars.) o FIN: ");
             String codigo = sc.next();
 
             if (codigo.equalsIgnoreCase("FIN")) break;
