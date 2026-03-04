@@ -28,7 +28,7 @@ public class Main {
             int categoria = sc.nextInt();
 
             if (!Recovery2CService.esCategoriaValida(categoria)) {
-                System.out.println("Categoría inválida");
+                System.out.println("Categoría invalida");
                 continue;
             }
 
