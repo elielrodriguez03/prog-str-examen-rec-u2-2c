@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         int totalValidas = 0;
         int totalLaptop = 0, totalProyector = 0, totalArduino = 0, totalCableado = 0;
         int totalBaja = 0, totalMedia = 0, totalAlta = 0;
@@ -13,7 +12,9 @@ public class Main {
             System.out.print("Código (7 chars) o FIN: ");
             String codigo = sc.next();
 
-            if (codigo.equalsIgnoreCase("FIN")) break;
+            if (codigo.equalsIgnoreCase("FIN")) {
+                break;
+            }
 
             if (!Recovery2CService.esCodigoValido(codigo)) {
                 System.out.println("Código inválido");
