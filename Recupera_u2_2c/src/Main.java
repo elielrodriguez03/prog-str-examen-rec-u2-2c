@@ -1,79 +1,107 @@
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        int totalValidas = 0;
+        // Acumuladores para el resumen final
+        int totalSolicitudesValidas = 0;
         int totalLaptop = 0, totalProyector = 0, totalArduino = 0, totalCableado = 0;
         int totalBaja = 0, totalMedia = 0, totalAlta = 0;
         int sumaHoras = 0;
 
         while (true) {
-            System.out.print("Código (7 chars) o FIN: ");
-            String codigo = sc.next();
+            // 1. Solicitar y validar código de solicitud
+            System.out.print("Ingrese código (escriba FIN para terminar): ");
+            String codigo = scanner.nextLine().trim();
 
-            if (codigo.equalsIgnoreCase("FIN")) break;
+            // Verificar si se debe terminar el programa
+            if (codigo.equalsIgnoreCase("FIN")) {
+                break;
+            }
 
+            // Validar código
             if (!Recovery2CService.esCodigoValido(codigo)) {
                 System.out.println("Código inválido");
                 continue;
             }
 
-            System.out.print("Categoría (1=Laptop, 2=Proyector, 3=Kit Arduino, 4=Cableado): ");
-            if (!sc.hasNextInt()) {
+            // 2. Solicitar y validar categoría
+            System.out.print("Ingrese categoría (1=Laptop, 2=Proyector, 3=Kit Arduino, 4=Cableado): ");
+            if (!scanner.hasNextInt()) {
                 System.out.println("Categoría inválida");
+                scanner.close();
                 return;
             }
-            int categoria = sc.nextInt();
+            int categoria = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el salto de línea pendiente
 
             if (!Recovery2CService.esCategoriaValida(categoria)) {
                 System.out.println("Categoría inválida");
                 continue;
             }
 
-            System.out.print("Horas (1..12): ");
-            if (!sc.hasNextInt()) {
+            // 3. Solicitar y validar horas
+            System.out.print("Ingrese horas solicitadas (1-12): ");
+            if (!scanner.hasNextInt()) {
                 System.out.println("Horas inválidas");
+                scanner.close();
                 return;
             }
-            int horas = sc.nextInt();
+            int horas = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el salto de línea pendiente
 
             if (!Recovery2CService.esHoraValida(horas)) {
                 System.out.println("Horas inválidas");
                 continue;
             }
 
-            totalValidas++;
-            sumaHoras += horas;
-
-            if (categoria == 1) totalLaptop++;
-            else if (categoria == 2) totalProyector++;
-            else if (categoria == 3) totalArduino++;
-            else totalCableado++;
-
-            String pr = Recovery2CService.clasificarPrioridad(horas);
-            if (pr.equals("BAJA")) totalBaja++;
-            else if (pr.equals("MEDIA")) totalMedia++;
-            else totalAlta++;
-
+            // Verificar si requiere autorización (regla de negocio)
             if (Recovery2CService.requiereAutorizacion(categoria, horas)) {
                 System.out.println("REQUIERE AUTORIZACIÓN");
                 break;
             }
+
+            // Si todo es válido, actualizar acumuladores
+            totalSolicitudesValidas++;
+            sumaHoras += horas;
+
+            // Contar por categoría
+            switch (categoria) {
+                case 1: totalLaptop++; break;
+                case 2: totalProyector++; break;
+                case 3: totalArduino++; break;
+                case 4: totalCableado++; break;
+            }
+
+            // Contar por prioridad
+            String prioridad = Recovery2CService.clasificarPrioridad(horas);
+            switch (prioridad) {
+                case "BAJA": totalBaja++; break;
+                case "MEDIA": totalMedia++; break;
+                case "ALTA": totalAlta++; break;
+            }
         }
 
+        // Generar resumen final
         System.out.println("\n=== RESUMEN FINAL ===");
-        System.out.println("Solicitudes válidas: " + totalValidas);
-        System.out.println("Laptop: " + totalLaptop);
-        System.out.println("Proyector: " + totalProyector);
-        System.out.println("Kit Arduino: " + totalArduino);
-        System.out.println("Cableado: " + totalCableado);
-        System.out.println("Prioridad BAJA: " + totalBaja);
-        System.out.println("Prioridad MEDIA: " + totalMedia);
-        System.out.println("Prioridad ALTA: " + totalAlta);
+        System.out.println("Total de solicitudes válidas: " + totalSolicitudesValidas);
+        System.out.println("Total por categoría:");
+        System.out.println(" Laptop: " + totalLaptop);
+        System.out.println(" Proyector: " + totalProyector);
+        System.out.println(" Kit Arduino: " + totalArduino);
+        System.out.println(" Cableado: " + totalCableado);
+        System.out.println("Total por prioridad:");
+        System.out.println(" BAJA: " + totalBaja);
+        System.out.println(" MEDIA: " + totalMedia);
+        System.out.println(" ALTA: " + totalAlta);
 
-        double promedio = (totalValidas == 0) ? 0.0 : (sumaHoras * 1.0 / totalValidas);
-        System.out.printf("Promedio horas: %.2f\n", promedio);
+        // Calcular promedio de horas (evitar división por cero)
+        double promedioHoras = 0.0;
+        if (totalSolicitudesValidas > 0) {
+            promedioHoras = (double) sumaHoras / totalSolicitudesValidas;
+        }
+        System.out.printf("Promedio de horas: %.2f%n", promedioHoras);
+
+        scanner.close();
     }
 }
