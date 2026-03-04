@@ -16,7 +16,7 @@ public class Main {
             if (codigo.equalsIgnoreCase("FIN")) break;
 
             if (!Recovery2CService.esCodigoValido(codigo)) {
-                System.out.println("Código inválido");
+                System.out.println("Código invalido");
                 continue;
             }
 
