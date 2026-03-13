@@ -35,8 +35,7 @@ public class Main {
 
             System.out.print("Horas (1..12): ");
             if (!sc.hasNextInt()) {
-
-            } else {System.out.println("Horas inválidas");
+                System.out.println("Horas inválidas");
                 return;
             }
             int horas = sc.nextInt();
