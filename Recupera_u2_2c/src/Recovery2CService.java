@@ -1,58 +1,48 @@
 public class Recovery2CService {
 
     public static boolean esCodigoValido(String codigo) {
-        // TODO:
-        // - null o en blanco -> false
-        // - longitud exacta 7
-         if (codigo.length()>=8) {
-
-        }else if (codigo.length()<=6){
-
+        // null o en blanco -> false
+        // longitud exacta 7
+        if (codigo == null || codigo.trim().isEmpty()) {
+            return false;
+        }
+        if (codigo.length() != 7) {
+            return false;
         }
 
         return true;
     }
 
     public static boolean esCategoriaValida(int categoria) {
-        // TODO: 1, 2, 3 o 4
-        if (categoria <=-1 && categoria >4) {
+        // 1, 2, 3 o 4
+        if (categoria >= 1 && categoria <= 4) {
             return true;
         }
 
-
-        return true;
+        return false;
     }
 
     public static boolean esHoraValida(int horas) {
-        // TODO: 1..12
-        if (horas<1 || horas>12){
-
+        // 1..12
+        if (horas >= 1 && horas <= 12) {
+            return true;
         }
-        return true;
-    }
 
+        return false;
+    }
     public static String clasificarPrioridad(int horas) {
-        // TODO:
-        // BAJA <= 3
-        // MEDIA 4..7
-        // ALTA > 7
-        String prioridad;
-        if (horas <=3){
-            prioridad = "baja";
-        } else if (horas>=4 && horas<=7) {
-            prioridad = "media";
-
-        }else{
-            prioridad = "alta";
+        if (horas <= 3) {
+            return "BAJA";
+        } else if (horas <= 7) {
+            return "MEDIA";
+        } else {
+            return "ALTA";
         }
-        return "su prioridad es" + prioridad;
     }
-
     public static boolean requiereAutorizacion(int categoria, int horas) {
-        // TODO: Laptop (1) y horas > 8
-        if (categoria==1 && horas >= 9){
-
+        if (categoria == 1 && horas > 8) {
+            return true;
         }
-        return true;
+        return false;
     }
 }
