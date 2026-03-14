@@ -47,15 +47,29 @@ public class Main {
             totalValidas++;
             sumaHoras += horas;
 
-            if (categoria == 1) totalLaptop++;
-            else if (categoria == 2) totalProyector++;
-            else if (categoria == 3) totalArduino++;
-            else totalCableado++;
+            if (categoria == 1){
+                totalLaptop++;
+            }
+            else if (categoria == 2){
+                totalProyector++;
+            }
+            else if (categoria == 3){
+                totalArduino++;
+            }
+            else{
+                totalCableado++;
+            }
 
             String pr = Recovery2CService.clasificarPrioridad(horas);
-            if (pr.equals("BAJA")) totalBaja++;
-            else if (pr.equals("MEDIA")) totalMedia++;
-            else totalAlta++;
+            if (pr.equals("BAJA")){
+                totalBaja++;
+            }
+            else if (pr.equals("MEDIA")){
+                totalMedia++;
+            }
+            else if (pr.equals("ALTA")){
+                totalAlta++;
+            }
 
             if (Recovery2CService.requiereAutorizacion(categoria, horas)) {
                 System.out.println("REQUIERE AUTORIZACIÓN");
