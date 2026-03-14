@@ -1,31 +1,50 @@
 public class Recovery2CService {
 
     public static boolean esCodigoValido(String codigo) {
+        if(codigo==null || codigo.length()!=7){
+    return false;
+        }
         // TODO:
         // - null o en blanco -> false
         // - longitud exacta 7
-        return false;
+        return true;
     }
 
     public static boolean esCategoriaValida(int categoria) {
+        if(categoria>=1 && categoria<=4){
+            return true;
+        }
         // TODO: 1, 2, 3 o 4
         return false;
     }
 
     public static boolean esHoraValida(int horas) {
+        if(horas>=1 && horas<=12){
+            return true;
+        }
         // TODO: 1..12
         return false;
     }
 
     public static String clasificarPrioridad(int horas) {
+        if(horas<=3){
+            return "BAJA";
+        } else if (horas>4 && horas<7) {
+            return "MEDIA";
+        }else {
+            return "ALTA";
+        }
         // TODO:
         // BAJA <= 3
         // MEDIA 4..7
         // ALTA > 7
-        return "";
+
     }
 
     public static boolean requiereAutorizacion(int categoria, int horas) {
+        if(categoria==1 && horas<8){
+            return true;
+        }
         // TODO: Laptop (1) y horas > 8
         return false;
     }
