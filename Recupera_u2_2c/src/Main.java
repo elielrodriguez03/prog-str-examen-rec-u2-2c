@@ -9,8 +9,6 @@ public class Main {
         int totalBaja = 0, totalMedia = 0, totalAlta = 0;
         int sumaHoras = 0;
 
-
-
         while (true) {
             System.out.print("Código (7 chars) o FIN: ");
             String codigo = sc.next();
@@ -25,9 +23,9 @@ public class Main {
             System.out.print("Categoría (1=Laptop, 2=Proyector, 3=Kit Arduino, 4=Cableado): ");
             if (!sc.hasNextInt()) {
                 System.out.println("Categoría inválida, debe de ser numerico y del 1 al 4");
-                return;
+                sc.next();
+                continue;
             }
-
 
             int categoria = sc.nextInt();
 
@@ -39,8 +37,10 @@ public class Main {
             System.out.print("Horas (1..12): ");
             if (!sc.hasNextInt()) {
                 System.out.println("Horas inválidas");
-                return;
+                sc.next();
+                continue;
             }
+
             int horas = sc.nextInt();
 
             if (!Recovery2CService.esHoraValida(horas)) {
@@ -81,4 +81,3 @@ public class Main {
         System.out.printf("Promedio horas: %.2f\n", promedio);
     }
 }
-
