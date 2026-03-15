@@ -64,7 +64,7 @@ public class Main {
             }
         }
 
-        System.out.println("\n=== RESUMEN FINAL ===");
+        System.out.println("\n===RESUMEN FINAL===");
         System.out.println("Solicitudes válidas: " + totalValidas);
         System.out.println("Laptop: " + totalLaptop);
         System.out.println("Proyector: " + totalProyector);
